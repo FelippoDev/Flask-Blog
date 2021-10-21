@@ -1,4 +1,3 @@
-import re
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -9,8 +8,8 @@ from flask_mail import Mail
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '714a6779fc023451a5335b76dd9ab876'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@127.0.0.1:3307/blog_flask'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@127.0.0.1:5432/flaskblog'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
